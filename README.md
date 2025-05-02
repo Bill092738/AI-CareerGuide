@@ -84,7 +84,7 @@ Contributions are welcome! The project is led and supported by the following tea
 - **General Planner**: 于桐歌 Tongge Yu (20616067)
 - **Technicians**:
   - 夏浩铭 Haoming Xia (20614873)
-  - 曹江昊 Jianghao Cao (20616327)
+  - 曹江昊 Jianghao Cao (20616327) (Github: StTsuki)
   - 赵浩然 Haoran Zhao (20617234) (Github: Bill092738)
 
 To contribute:
