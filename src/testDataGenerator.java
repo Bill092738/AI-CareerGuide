@@ -204,7 +204,7 @@ public class testDataGenerator {
         readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possiblePositions.csv", positions);
 
         // Load cloud map (choose one or random)
-        cloudMap = new cloudMapLoader("/home/billz/code/AI-CareerGuide/data/cloudMaps/pointCoordinates4.csv");
+        cloudMap = new cloudMapLoader("/home/billz/code/AI-CareerGuide/data/cloudMaps/pointCoordinates1.csv");
 
         // Get all points from cloudMap for min/max calculation
         List<double[]> allPoints = cloudMap.getPoints();
