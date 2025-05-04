@@ -194,7 +194,7 @@ public class testDataGenerator {
         int numEmployRecords = scanner.nextInt();
         scanner.nextLine();
 
-        // Load CSV data
+        // Load CSV data You should change the path to your own data
         readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleFirstNames.csv", firstNames);
         readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleLastNames.csv", lastNames);
         readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleMajors.csv", majors);
