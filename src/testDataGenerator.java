@@ -43,8 +43,9 @@ public class testDataGenerator {
         String nationality;
         int homeLand;
         int score; // Add score property
+        int gender;
 
-        public student(String name, String studentId, String major, String email, String nationality, int homeLand, int score) {
+        public student(String name, String studentId, String major, String email, String nationality, int homeLand, int score, int gender) {
             setName(name);
             setStudentId(studentId);
             setMajor(major);
@@ -52,6 +53,7 @@ public class testDataGenerator {
             setNationality(nationality);
             setHomeLand(homeLand);
             setScore(score);
+            setGender(gender);
         }
 
         public void setName(String name) {
@@ -90,6 +92,16 @@ public class testDataGenerator {
             if (score < 0) score = 0;
             if (score > 100) score = 100;
             this.score = score;
+        }
+        public void setGender(int gender) {
+        if (gender != 0 && gender != 1) {
+            Random random = new Random();
+            gender = random.nextInt(2);
+        }
+        this.gender = gender;
+        }
+        public int getGender() {
+        return gender;
         }
     }
 
@@ -195,16 +207,16 @@ public class testDataGenerator {
         scanner.nextLine();
 
         // Load CSV data You should change the path to your own data
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleFirstNames.csv", firstNames);
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleLastNames.csv", lastNames);
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleMajors.csv", majors);
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleEmails.csv", emails);
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleNations.csv", nationalities);
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possibleCompanyNames.csv", companyNames);
-        readFromCSV("/home/billz/code/AI-CareerGuide/data/demoData/possiblePositions.csv", positions);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possibleFirstNames.csv", firstNames);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possibleLastNames.csv", lastNames);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possibleMajors.csv", majors);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possibleEmails.csv", emails);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possibleNations.csv", nationalities);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possibleCompanyNames.csv", companyNames);
+        readFromCSV("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/demoData/possiblePositions.csv", positions);
 
         // Load cloud map (choose one or random)
-        cloudMap = new cloudMapLoader("/home/billz/code/AI-CareerGuide/src/pointCoordinatesForDemo.csv");
+        cloudMap = new cloudMapLoader("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/src/pointCoordinatesForDemo.csv");
 
         // Get all points from cloudMap for min/max calculation
         List<double[]> allPoints = cloudMap.getPoints();
@@ -226,7 +238,9 @@ public class testDataGenerator {
             String nationality = nationalities.get((int)(point[1]) % nationalities.size());
             int homeLand = (int)(point[1]) % 3;
             int score = mapRange(point[0], xMinMax[0], xMinMax[1], 0, 100); // Map x to score
-            students.add(new testDataGenerator().new student(name, studentId, major, email, nationality, homeLand, score));
+            Random random = new Random();
+            int gender = random.nextInt(2);
+            students.add(new testDataGenerator().new student(name, studentId, major, email, nationality, homeLand, score, gender));
         }
 
         // Generate employ records using cloud map for logical distribution
@@ -246,8 +260,8 @@ public class testDataGenerator {
             employRecords.add(new testDataGenerator().new employRecord(employId, studentId, companyName, position, salary, startDate, endDate, nationality, destination));
         }
 
-        writeToCSVstudent("/home/billz/code/AI-CareerGuide/data/student.csv", students);
-        writeToCSVemployRecord("/home/billz/code/AI-CareerGuide/data/employRecord.csv", employRecords);
+        writeToCSVstudent("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/student.csv", students);
+        writeToCSVemployRecord("C:/Users/31169/Desktop/AI-CareerGuide/AI-CareerGuide/data/employRecord.csv", employRecords);
 
         System.out.println("Data generation complete.");
     }
@@ -287,9 +301,9 @@ public class testDataGenerator {
     // Write students to CSV
     static void writeToCSVstudent(String filePath, ArrayList<student> students) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
-            pw.println("name,studentId,major,email,nationality,homeLand,score");
+            pw.println("name,studentId,major,email,nationality,homeLand,score,gender");
             for (student s : students) {
-                pw.printf("%s,%s,%s,%s,%s,%d,%d\n", s.name, s.studentId, s.major, s.email, s.nationality, s.homeLand, s.score);
+                pw.printf("%s,%s,%s,%s,%s,%d,%d,%d\n", s.name, s.studentId, s.major, s.email, s.nationality, s.homeLand, s.score, s.gender);
             }
         } catch (IOException e) {
             System.err.println("Failed to write students: " + filePath);
@@ -311,5 +325,3 @@ public class testDataGenerator {
         }
     }
 }
-
-//change
