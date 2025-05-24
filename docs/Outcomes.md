@@ -64,6 +64,10 @@ cluster_meanings = {
   - Major selection and salary ranges
   - Geographical preferences and job placement
 
+Outcome Example:
+![Salary](outputSalaryvsScore.png)
+![Gender](outputGender.png)
+
 ### 3. Predictive Modeling
 
 Implemented multiple machine learning models for career path prediction:
